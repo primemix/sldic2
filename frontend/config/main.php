@@ -36,14 +36,17 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+    ],
+    'modules' => [
+        'serializer' => [
+            'class' => 'frontend\modules\serializer\SerializerModule',
+        ],
     ],
     'params' => $params,
 ];
