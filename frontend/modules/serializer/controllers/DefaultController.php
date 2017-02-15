@@ -3,6 +3,7 @@
 namespace frontend\modules\serializer\controllers;
 
 use Yii;
+use common\components\Test;
 use yii\web\Controller;
 use frontend\modules\serializer\models;
 
@@ -36,6 +37,10 @@ class DefaultController extends Controller
     }
 
 
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
     public function actionDic()
     {
         $array = [
@@ -50,6 +55,14 @@ class DefaultController extends Controller
         /** @var  $requestCrawler  - Dependency injection container*/
         $requestCrawler = Yii::$container->get('Json')->getSerializer($array);
 
+        $foo = new Test();
+        $foo->on(Test::MY_EVENT, function ($event) {
+            echo 'yes!';
+            die;
+        });
+//        $a = Test::bar($requestCrawler);
+//        var_dump($requestCrawler);die;
+        
         return $this->render('dic', [
             'encode' => $requestCrawler
         ]);
